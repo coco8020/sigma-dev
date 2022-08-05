@@ -6,3 +6,6 @@ document.querySelector('.product-tabs_tab-link.w--current').addEventListener('cl
     document.querySelector('.product-tabs_tab-link.w--current').style.display = 'block';
 }
 );
+
+// console log its working!!!
+console.log('its working!!!');
