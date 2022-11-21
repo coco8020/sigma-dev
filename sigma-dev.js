@@ -1047,7 +1047,7 @@ Webflow.push(function () {
   // CUSTOMER STORIES
 
   // if page is customer stories
-  if (window.location.pathname === "/why-sigma-customer-stories") {
+  if (window.location.pathname === "/sigma-customer-stories") {
     // if viewport width is less than 768px
     if (window.innerWidth < 768) {
       // prepend searchSnippet to element with class .side-tabs-menu
