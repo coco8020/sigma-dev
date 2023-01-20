@@ -1047,200 +1047,200 @@ Webflow.push(function () {
     }
   }
 
-  // RESOURCES PAGE
+  // // RESOURCES PAGE
 
-  if (window.location.pathname === "/resources") {
-    // if viewport width is less than 768px
-    if (window.innerWidth < 768) {
-      // prepend searchSnippet to element with class .side-tabs-menu
-      document
-        .querySelector(".side-tabs-component")
-        .insertAdjacentHTML("beforebegin", searchSnippet);
-    } else {
-      // prepend searchSnippet to element with class .side-tabs-menu
-      document
-        .querySelector(".side-tabs-menu")
-        .insertAdjacentHTML("afterbegin", searchSnippet);
-    }
+  // if (window.location.pathname === "/resources") {
+  //   // if viewport width is less than 768px
+  //   if (window.innerWidth < 768) {
+  //     // prepend searchSnippet to element with class .side-tabs-menu
+  //     document
+  //       .querySelector(".side-tabs-component")
+  //       .insertAdjacentHTML("beforebegin", searchSnippet);
+  //   } else {
+  //     // prepend searchSnippet to element with class .side-tabs-menu
+  //     document
+  //       .querySelector(".side-tabs-menu")
+  //       .insertAdjacentHTML("afterbegin", searchSnippet);
+  //   }
 
-    var searchInput = document.querySelector("#search");
-    searchInput.addEventListener("keyup", function () {
-      // set display block to .input-close
-      document.querySelector(".input-close").style.display = "block";
+  //   var searchInput = document.querySelector("#search");
+  //   searchInput.addEventListener("keyup", function () {
+  //     // set display block to .input-close
+  //     document.querySelector(".input-close").style.display = "block";
 
-      var searchValue = searchInput.value.toLowerCase();
-      var blogPosts = document.querySelectorAll(".resources-collection_item");
-      blogPosts.forEach(function (blogPost) {
-        var blogPostTitle = blogPost
-          .querySelector(".header-7")
-          .innerText.toLowerCase();
-        if (blogPostTitle.includes(searchValue)) {
-          // remove class .is-hidden from element
-          blogPost.classList.remove("is-hidden");
-        } else {
-          // add class .is-hidden to element
-          blogPost.classList.add("is-hidden");
-        }
-      });
+  //     var searchValue = searchInput.value.toLowerCase();
+  //     var blogPosts = document.querySelectorAll(".resources-collection_item");
+  //     blogPosts.forEach(function (blogPost) {
+  //       var blogPostTitle = blogPost
+  //         .querySelector(".header-7")
+  //         .innerText.toLowerCase();
+  //       if (blogPostTitle.includes(searchValue)) {
+  //         // remove class .is-hidden from element
+  //         blogPost.classList.remove("is-hidden");
+  //       } else {
+  //         // add class .is-hidden to element
+  //         blogPost.classList.add("is-hidden");
+  //       }
+  //     });
 
-      // count the number of visible elements in each tab pane
-      var tabPanes = document.querySelectorAll(".w-tab-pane");
-      tabPanes.forEach(function (tabPane) {
-        var visibleBlogPosts = tabPane.querySelectorAll(
-          ".resources-collection_item:not(.is-hidden)"
-        );
-        var visibleBlogPostsCount = visibleBlogPosts.length;
-        var tabPaneId = tabPane.getAttribute("id");
-        // replace the word pane with tab in tabPaneId
-        var tabId = tabPaneId.replace("pane", "tab");
-        // get element with id of tabId
-        var tab = document.querySelector("#" + tabId);
-        var tabPaneCount = tab.querySelector(".count");
-        tabPaneCount.innerText = visibleBlogPostsCount;
-      });
+  //     // count the number of visible elements in each tab pane
+  //     var tabPanes = document.querySelectorAll(".w-tab-pane");
+  //     tabPanes.forEach(function (tabPane) {
+  //       var visibleBlogPosts = tabPane.querySelectorAll(
+  //         ".resources-collection_item:not(.is-hidden)"
+  //       );
+  //       var visibleBlogPostsCount = visibleBlogPosts.length;
+  //       var tabPaneId = tabPane.getAttribute("id");
+  //       // replace the word pane with tab in tabPaneId
+  //       var tabId = tabPaneId.replace("pane", "tab");
+  //       // get element with id of tabId
+  //       var tab = document.querySelector("#" + tabId);
+  //       var tabPaneCount = tab.querySelector(".count");
+  //       tabPaneCount.innerText = visibleBlogPostsCount;
+  //     });
 
-      // get all elements with class .count
-      var counts = document.querySelectorAll(".count");
-      // if counts innerText is 0 set display to none
-      counts.forEach(function (count) {
-        if (count.innerText === "0") {
-          count.style.display = "none";
-        } else {
-          count.style.display = "inline-block";
-        }
-      });
+  //     // get all elements with class .count
+  //     var counts = document.querySelectorAll(".count");
+  //     // if counts innerText is 0 set display to none
+  //     counts.forEach(function (count) {
+  //       if (count.innerText === "0") {
+  //         count.style.display = "none";
+  //       } else {
+  //         count.style.display = "inline-block";
+  //       }
+  //     });
 
-      // if search input is empty set display to none for all counts
-      if (searchValue === "") {
-        counts.forEach(function (count) {
-          count.style.display = "none";
-          // set display none to .input-close
-          document.querySelector(".input-close").style.display = "none";
-        });
-      }
-    });
+  //     // if search input is empty set display to none for all counts
+  //     if (searchValue === "") {
+  //       counts.forEach(function (count) {
+  //         count.style.display = "none";
+  //         // set display none to .input-close
+  //         document.querySelector(".input-close").style.display = "none";
+  //       });
+  //     }
+  //   });
 
-    // add event listener to element with class .input-close
-    document
-      .querySelector(".input-close")
-      .addEventListener("click", function () {
-        // set value of search input to empty string
-        searchInput.value = "";
-        // set display none to .input-close
-        document.querySelector(".input-close").style.display = "none";
-        // set display none to all elements with class .count
-        document.querySelectorAll(".count").forEach(function (count) {
-          count.style.display = "none";
-        });
-        // remove class .is-hidden from all elements with class .blog-collection_item
-        document
-          .querySelectorAll(".resources-collection_item")
-          .forEach(function (blogPost) {
-            blogPost.classList.remove("is-hidden");
-          });
-      });
+  //   // add event listener to element with class .input-close
+  //   document
+  //     .querySelector(".input-close")
+  //     .addEventListener("click", function () {
+  //       // set value of search input to empty string
+  //       searchInput.value = "";
+  //       // set display none to .input-close
+  //       document.querySelector(".input-close").style.display = "none";
+  //       // set display none to all elements with class .count
+  //       document.querySelectorAll(".count").forEach(function (count) {
+  //         count.style.display = "none";
+  //       });
+  //       // remove class .is-hidden from all elements with class .blog-collection_item
+  //       document
+  //         .querySelectorAll(".resources-collection_item")
+  //         .forEach(function (blogPost) {
+  //           blogPost.classList.remove("is-hidden");
+  //         });
+  //     });
 
-    // if screen is smaller than 768px
-    if (window.innerWidth < 768) {
-      // TABS FUNCTIONALITY ON MOBILE
+  //   // if screen is smaller than 768px
+  //   if (window.innerWidth < 768) {
+  //     // TABS FUNCTIONALITY ON MOBILE
 
-      // add mutation observer to all elements with the class "product-tabs_tab-link" to detect when attribute "aria-selected" changes
-      var observer = new MutationObserver(function (mutations) {
-        mutations.forEach(function (mutation) {
-          if (mutation.attributeName === "aria-selected") {
-            var target = mutation.target;
-            var value = target.getAttribute("aria-selected");
-            if (value === "true") {
-              // set all elements with the class "product-tabs_tab-link" to display: none
-              var tabs = document.querySelectorAll(".side-tab-link");
-              tabs.forEach(function (tab) {
-                tab.style.display = "none";
-              });
-              // set the target element to display: block
-              target.style.display = "flex";
-              target.style.borderColor = "#e2e2e2";
-              target.style.backgroundImage =
-                "url(https://assets.website-files.com/62a3d35f74b3a546c309e010/62f5c6ec915f956f7d97df78_chevron-small.svg)";
-              // set box shadow of parent element to 0px 0px 0px 0px rgba(0, 0, 0, 0)
-              target.parentElement.style.boxShadow =
-                "0px 0px 0px 0px rgba(0, 0, 0, 0)";
-              openTabs();
-            }
-          }
-        });
-      });
+  //     // add mutation observer to all elements with the class "product-tabs_tab-link" to detect when attribute "aria-selected" changes
+  //     var observer = new MutationObserver(function (mutations) {
+  //       mutations.forEach(function (mutation) {
+  //         if (mutation.attributeName === "aria-selected") {
+  //           var target = mutation.target;
+  //           var value = target.getAttribute("aria-selected");
+  //           if (value === "true") {
+  //             // set all elements with the class "product-tabs_tab-link" to display: none
+  //             var tabs = document.querySelectorAll(".side-tab-link");
+  //             tabs.forEach(function (tab) {
+  //               tab.style.display = "none";
+  //             });
+  //             // set the target element to display: block
+  //             target.style.display = "flex";
+  //             target.style.borderColor = "#e2e2e2";
+  //             target.style.backgroundImage =
+  //               "url(https://assets.website-files.com/62a3d35f74b3a546c309e010/62f5c6ec915f956f7d97df78_chevron-small.svg)";
+  //             // set box shadow of parent element to 0px 0px 0px 0px rgba(0, 0, 0, 0)
+  //             target.parentElement.style.boxShadow =
+  //               "0px 0px 0px 0px rgba(0, 0, 0, 0)";
+  //             openTabs();
+  //           }
+  //         }
+  //       });
+  //     });
 
-      var config = { attributes: true, attributeFilter: ["aria-selected"] };
-      var productTabs = document.querySelectorAll(".side-tab-link");
-      for (var i = 0; i < productTabs.length; i++) {
-        observer.observe(productTabs[i], config);
-      }
+  //     var config = { attributes: true, attributeFilter: ["aria-selected"] };
+  //     var productTabs = document.querySelectorAll(".side-tab-link");
+  //     for (var i = 0; i < productTabs.length; i++) {
+  //       observer.observe(productTabs[i], config);
+  //     }
 
-      function openTabs() {
-        var productTabsCurrent = document.querySelectorAll(
-          ".side-tab-link.w--current"
-        );
+  //     function openTabs() {
+  //       var productTabsCurrent = document.querySelectorAll(
+  //         ".side-tab-link.w--current"
+  //       );
 
-        productTabsCurrent.forEach(function (productTab) {
-          productTab.addEventListener("click", function () {
-            // set border color of target element to #0000
-            productTab.style.borderColor = "#0000";
-            productTab.style.backgroundImage = "none";
-            // set box shadow of parent element to 0 4px 24px 0 rgb(28 28 28 / 16%)
-            productTab.parentElement.style.boxShadow =
-              "0 4px 24px 0 rgba(28, 28, 28, 0.16)";
-            // set all elements with the class "product-tabs_tab-link" to display:block
-            var productTabs = document.querySelectorAll(".side-tab-link");
-            productTabs.forEach(function (productTab) {
-              productTab.style.display = "flex";
-            });
-          });
-        });
-      }
+  //       productTabsCurrent.forEach(function (productTab) {
+  //         productTab.addEventListener("click", function () {
+  //           // set border color of target element to #0000
+  //           productTab.style.borderColor = "#0000";
+  //           productTab.style.backgroundImage = "none";
+  //           // set box shadow of parent element to 0 4px 24px 0 rgb(28 28 28 / 16%)
+  //           productTab.parentElement.style.boxShadow =
+  //             "0 4px 24px 0 rgba(28, 28, 28, 0.16)";
+  //           // set all elements with the class "product-tabs_tab-link" to display:block
+  //           var productTabs = document.querySelectorAll(".side-tab-link");
+  //           productTabs.forEach(function (productTab) {
+  //             productTab.style.display = "flex";
+  //           });
+  //         });
+  //       });
+  //     }
 
-      openTabs();
-    }
+  //     openTabs();
+  //   }
 
-    // Link to tab links
+  //   // Link to tab links
 
-    // get hash from url
-    var hash = window.location.search.split("category=")[1];
+  //   // get hash from url
+  //   var hash = window.location.search.split("category=")[1];
 
-    // remove # from hash
-    hash = hash.replace("#", "");
+  //   // remove # from hash
+  //   hash = hash.replace("#", "");
 
-    // remove all characters after /
-    hash = hash.split("/")[0];
+  //   // remove all characters after /
+  //   hash = hash.split("/")[0];
 
-    // remove all characters after ?
-    hash = hash.split("&")[0];
+  //   // remove all characters after ?
+  //   hash = hash.split("&")[0];
 
-    function clickTab(hash) {
-      // click element with attribute resource-tab-link="tabId"
-      document.querySelector("[resource-tab-link='" + hash + "']").click();
-    }
+  //   function clickTab(hash) {
+  //     // click element with attribute resource-tab-link="tabId"
+  //     document.querySelector("[resource-tab-link='" + hash + "']").click();
+  //   }
 
-    clickTab(hash);
-    setTimeout(function () {
-      window.scrollTo(0, 0);
-    }, 0);
+  //   clickTab(hash);
+  //   setTimeout(function () {
+  //     window.scrollTo(0, 0);
+  //   }, 0);
 
-    // get all elements with attribute nav-link="product"
-    var productLinks = document.querySelectorAll("[nav-link='resources']");
+  //   // get all elements with attribute nav-link="product"
+  //   var productLinks = document.querySelectorAll("[nav-link='resources']");
 
-    // for each element in productLinks add event listener
-    productLinks.forEach(function (productLink) {
-      productLink.addEventListener("click", function (e) {
-        // get href of element
-        var href = productLink.getAttribute("href");
+  //   // for each element in productLinks add event listener
+  //   productLinks.forEach(function (productLink) {
+  //     productLink.addEventListener("click", function (e) {
+  //       // get href of element
+  //       var href = productLink.getAttribute("href");
 
-        // go to href
-        window.location.href = href;
-        // refresh page
-        window.location.reload();
-      });
-    });
-  }
+  //       // go to href
+  //       window.location.href = href;
+  //       // refresh page
+  //       window.location.reload();
+  //     });
+  //   });
+  // }
 
   // SLIDER
 
